@@ -22,7 +22,7 @@ const Login = () => {
             });
 
             const { token: acces_token } = response.data.data;
-            localStorage.setItem('accessToken', acces_token);
+            localStorage.setItem('token', acces_token);
 
             setToken(acces_token);
 

@@ -1,7 +1,9 @@
+
+import '../App.css';
+
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 
 const Login = () => {
 
@@ -38,24 +40,40 @@ const Login = () => {
     };
 
     return (
-        <div>
+
+        <div className='login-box'>
             <div>
-                <h2>onefin assignment</h2>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                <h2>Login</h2>
+                <div className='input-box'>
+                    <span className='icon'>
+                        <ion-icon name="person-outline"></ion-icon>
+                    </span>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                    <label>Username</label>
+                </div>
+                <div className='input-box'>
+                    <span className='icon'>
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                    </span>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+
+                        required
+                    />
+                    <label>Password</label>
+                </div>
+
                 <button onClick={handleLogin}>Login</button>
             </div>
         </div>
+
     );
 }
 

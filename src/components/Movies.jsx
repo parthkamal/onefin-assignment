@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import '../App.css';
 import { PaginationItem } from '@mui/material';
+
+import Movie from './Movie';
+import '../App.css';
 
 
 
@@ -14,6 +17,8 @@ const Movies = () => {
     const [list, setList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
+
+
     const handleList = async ({ token, currentPage }) => {
 
         const headers = {
@@ -22,13 +27,12 @@ const Movies = () => {
 
         const params = {
             page: currentPage
-        }
+        };
 
         try {
 
-            const URL_STRING = 'https://demo.credy.in/api/v1/maya/movies/';
-
-            const response = await axios.get(URL_STRING, { headers, params });
+            const MOVIES_API = 'https://demo.credy.in/api/v1/maya/movies/';
+            const response = await axios.get(MOVIES_API, { headers, params });
             setList(response.data.results);
 
         } catch (error) {
@@ -57,29 +61,31 @@ const Movies = () => {
     return (
         <div className='movie-list'>
             <h1>List of Movies</h1>
-            {
-                list.map((item, index) => (
-                    <div key={index}>
-                        <div>{item.title}</div>
-                    </div>
-                ))
-            }
+
+            <div className='movie-grid'>
+                {
+                    list.map((item, index) => (
+                        <Movie movie={item} key={index} />
+
+                    ))
+                }
+            </div>
+
             <Stack spacing={10}>
                 <Pagination
                     count={4547}
                     page={currentPage}
                     onChange={handlePageChange}
-                    color="secondary"
+                    color="primary"
 
                     className='pagination'
                     size="large"
                     renderItem=
                     {(item) =>
-                        <PaginationItem {...item} className='item' />
+                        <PaginationItem {...item} className='pagination-item' />
                     }
                 />
             </Stack>
-
         </div>
     );
 };

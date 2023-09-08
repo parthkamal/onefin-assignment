@@ -16,7 +16,6 @@ const Login = () => {
     const handleLogin = async () => {
         try {
 
-            console.log({ username, password });
 
             const response = await axios.post('https://demo.credy.in/api/v1/usermodule/login/', {
                 username: username,
@@ -35,9 +34,11 @@ const Login = () => {
 
         } catch (error) {
             console.error('Login failed:', error);
-            alert('sorry you are not allowed bro');
         }
     };
+
+
+
 
     return (
 

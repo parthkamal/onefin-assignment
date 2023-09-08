@@ -16,7 +16,7 @@ body {
 }
 
 body {
-  background-image: url(/bg2.jpg);
+  background-image: url(/bg1.jpg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,6 +183,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  backdrop-filter: blur(5px);
 }
 
 .movie-image {
@@ -331,3 +332,33 @@ button {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+
+
+/*---------------------------------------------SEARCH BAR ----------------------------*/
+
+
+.search-bar {
+  margin: 20px;
+  padding: 16px;
+  width: 40%;
+  font-size: 23px;
+  border: none;
+  border-radius: 5px;
+  position: sticky;
+}
+
+.refresh-button {
+  border: 1px solid green;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(27, 79, 168);
+  color: white;
+  margin: 20px;
+}
+
+
+
+

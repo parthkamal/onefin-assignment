@@ -6,16 +6,6 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { PaginationItem } from '@mui/material';
 
-import {
-    fromEvent,
-    debounceTime,
-    filter,
-    distinctUntilChanged,
-    switchMap,
-    catchError
-} from 'rxjs';
-import { ajax } from 'rxjs/ajax';
-
 import Movie from './Movie';
 import '../App.css';
 
@@ -27,6 +17,7 @@ const Movies = () => {
     const [query, setQuery] = useState("");
     const [filteredItems, setFilteredItems] = useState(list);
     const [typingTimeout, setTypingTimeout] = useState(null);
+    const [isPopulated, setPopulated] = useState(false);
 
     const handleSearch = (e) => {
 
@@ -57,41 +48,54 @@ const Movies = () => {
 
     };
 
-    const handleList = async ({ token, currentPage }) => {
+    const handleList = async ({ currentPage }) => {
 
-        const headers = {
-            "Authorization": `Token ${token}`
-        };
-
-        const params = {
-            page: currentPage
-        };
-
-        try {
-
-            const MOVIES_API = 'https://demo.credy.in/api/v1/maya/movies/';
-            const response = await axios.get(MOVIES_API, { headers, params });
-            setList(response.data.results);
-            setFilteredItems(response.data.results);
-
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const handlePageChange = (event, page) => {
-        setCurrentPage((prev) => page); //good practice
-    }
-
-    useEffect(() => {
         const token = localStorage.getItem('token');
 
         if (token) {
 
-            handleList({ token, currentPage });
+            const headers = {
+                "Authorization": `Token ${token}`
+            };
+
+            const params = {
+                page: currentPage
+            };
+
+            try {
+
+                const MOVIES_API = 'https://demo.credy.in/api/v1/maya/movies/';
+                const response = await axios.get(MOVIES_API, { headers, params });
+                setList(response.data.results);
+
+
+                if (response.data.results.length > 0) {
+                    setFilteredItems(response.data.results);
+                    setPopulated(true)
+                } else {
+                    setPopulated(false)
+                }
+
+
+            } catch (error) {
+                console.log('mc error aa gya');
+                setPopulated(false);
+            }
+
         } else {
             navigate(-1);
         }
+
+
+    };
+
+    const handlePageChange = (event, page) => {
+        setPopulated(false);
+        setCurrentPage((prev) => page); //good practice
+    }
+
+    useEffect(() => {
+        handleList({ currentPage });
     }, [currentPage]);
 
     return (
@@ -103,16 +107,28 @@ const Movies = () => {
                 placeholder="Search..."
                 value={query}
                 onChange={handleSearch}
+
+                className='search-bar'
             />
 
-            <div className='movie-grid'>
-                {
-                    filteredItems.map((item, index) => (
-                        <Movie movie={item} key={index} />
 
-                    ))
-                }
-            </div>
+            {isPopulated ? (
+                <div className='movie-grid'>
+                    {
+                        filteredItems.map((item, index) => (
+                            <Movie movie={item} key={index} />
+
+                        ))
+                    }
+                </div>
+            ) : (
+                <div>
+                <div>{'ouch! click the button to refresh :)'}</div>
+                    <div className='refresh-button' onClick={(e)=>handleList({currentPage})}>refresh</div>
+                </div>
+            )}
+
+
 
             <Stack spacing={10}>
                 <Pagination

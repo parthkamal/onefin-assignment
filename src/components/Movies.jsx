@@ -78,7 +78,7 @@ const Movies = () => {
 
 
             } catch (error) {
-                console.log('mc error aa gya');
+                console.error(error);
                 setPopulated(false);
             }
 
@@ -91,7 +91,7 @@ const Movies = () => {
 
     const handlePageChange = (event, page) => {
         setPopulated(false);
-        setCurrentPage((prev) => page); //good practice
+        setCurrentPage((prev) => page); 
     }
 
     useEffect(() => {
@@ -100,7 +100,7 @@ const Movies = () => {
 
     return (
         <div className='movie-list'>
-            <h1>list of movies</h1>
+            <h1 className='movie-heading'>List of Movies</h1>
             <input
                 id="search-input"
                 type="text"
@@ -123,14 +123,14 @@ const Movies = () => {
                 </div>
             ) : (
                 <div>
-                <div>{'ouch! click the button to refresh :)'}</div>
-                    <div className='refresh-button' onClick={(e)=>handleList({currentPage})}>refresh</div>
+                    <div>{'ouch! click the button to refresh :)'}</div>
+                    <div className='refresh-button' onClick={(e) => handleList({ currentPage })}>refresh</div>
                 </div>
             )}
 
 
 
-            <Stack spacing={10}>
+            <Stack spacing={10} className='pagination-main' >
                 <Pagination
                     count={4547}
                     page={currentPage}

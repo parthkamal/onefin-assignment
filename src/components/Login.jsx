@@ -1,4 +1,3 @@
-
 import '../App.css';
 
 import axios from 'axios';
@@ -12,68 +11,117 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [token, setToken] = useState(null);
+    const [errors, setErrors] = useState({});
+
+
+
+    const validateForm = () => {
+        const errors = {};
+        if (!username) {
+            errors.username = 'username is required';
+        } else if (username.length < 4) {
+            errors.username = 'username : atleast four characters'
+        }
+        if (!password) {
+            errors.password = 'Password is required';
+        } else if (password.length < 6) {
+            errors.password = 'Password must be at least 6 characters long';
+        }
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
 
     const handleLogin = async () => {
-        try {
 
+        if (validateForm()) {
+            try {
 
-            const response = await axios.post('https://demo.credy.in/api/v1/usermodule/login/', {
-                username: username,
-                password: password,
-            });
+                const response = await axios.post('https://demo.credy.in/api/v1/usermodule/login/', {
+                    username: username,
+                    password: password,
+                });
 
-            const { token: acces_token } = response.data.data;
-            localStorage.setItem('token', acces_token);
+                const { token: acces_token } = response.data.data;
+                localStorage.setItem('token', acces_token);
 
-            setToken(acces_token);
+                setToken(acces_token);
 
-            setUsername('');
-            setPassword('');
+                setUsername('');
+                setPassword('');
 
-            navigate('/movies');
+                navigate('/movies');
 
-        } catch (error) {
-            console.error('Login failed:', error);
+            } catch (error) {
+                console.error('Login failed:', error);
+            }
         }
+
+
+    };
+
+
+    const handleBlur = (e) => {
+        const fieldName = e.target.name;
+        if (errors[fieldName]) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                [fieldName]: '',
+            }));
+        }
+
+    };
+
+    const handleFocus = (e) => {
+
+        setErrors((prevErrors) => ({}))
     };
 
 
 
 
+
     return (
-
-        <div className='login-box'>
-            <div>
-                <h2>Login</h2>
-                <div className='input-box'>
-                    <span className='icon'>
-                        <ion-icon name="person-outline"></ion-icon>
-                    </span>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                    <label>Username</label>
+        <div className='login-main'>
+            <div className='login-box'>
+                <div>
+                    <h2>Login</h2>
+                    <div className='input-box'>
+                        <span className='icon'>
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                        />
+                        <label>Username</label>
+                    </div>
+                    {(errors.username) ?
+                        <div className='form-message'>*{errors.username}</div> : <></>}
+                    <div className='input-box'>
+                        <span className='icon'>
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                        />
+                        <label>Password</label>
+                    </div>
+                    {(errors.password) ? <div className='form-message'>*{errors.password}</div> : <></>}
+                    <button className='login-btn' onClick={handleLogin}>Login</button>
                 </div>
-                <div className='input-box'>
-                    <span className='icon'>
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                    </span>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-
-                        required
-                    />
-                    <label>Password</label>
-                </div>
-
-                <button onClick={handleLogin}>Login</button>
             </div>
         </div>
+
+
 
     );
 }

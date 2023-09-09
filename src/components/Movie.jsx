@@ -34,12 +34,15 @@ const Movie = (props) => {
             <div className='movie-content'>
                 <div className='movie-content-top'>
                     <div className='movie-title'>{title}</div>
-                    <div className='movie-description'>{getSubstringByWords(description,15)}</div>
+                    <div className='movie-description'>{getSubstringByWords(description, 15)}</div>
                 </div>
 
                 <div className='movie-content-bot'>
-                    <div>{genres}</div>
-                    <div onClick={openModal}>know more</div>
+                    <div className='movie-content-genre'><div><img className='genre-img' src='/genre.png' />
+                    </div>
+                        <div>{genres}</div>
+                    </div>
+                    <div className='know-more-btn' onClick={openModal}>know more</div>
                 </div>
 
             </div>

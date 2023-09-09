@@ -8,7 +8,7 @@ const MovieModal = ({ isOpen, closeModal, title, description, genres, src }) => 
 
     
     return (
-        <div>
+    
             <Modal
                 open={isOpen}
                 onRequestClose={closeModal}
@@ -26,16 +26,14 @@ const MovieModal = ({ isOpen, closeModal, title, description, genres, src }) => 
                         </div>
 
                         <div className='modal-content-bot'>
-                            <div>{genres}</div>
-                            <div>
-                                <button id='modalBtn' onClick={closeModal}>Close</button>
-                            </div>
+                            <div className='modal-content-genre'>{genres}</div>
+                            <div  className='modal-content-bot-btn' onClick={closeModal}>Close</div>
                         </div>
 
                     </div>
                 </div>
             </Modal>
-        </div>
+        
 
 
 

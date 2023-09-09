@@ -6,6 +6,7 @@ const Movie = (props) => {
 
     const { title, description, genres } = props.movie;
     const [modalOpen, setModalOpen] = useState(false);
+    const theme = props.theme;
 
     const openModal = () => {
         setModalOpen(true);
@@ -47,7 +48,7 @@ const Movie = (props) => {
 
             </div>
 
-            <MovieModal isOpen={modalOpen} closeModal={closeModal} title={title} description={description} genres={genres} src={`https://ui-avatars.com/api/?name=${title}&background=random`} />
+            <MovieModal isOpen={modalOpen} closeModal={closeModal} title={title} theme={theme} description={description} genres={genres} src={`https://ui-avatars.com/api/?name=${title}&background=random`} />
         </div>
     );
 }

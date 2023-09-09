@@ -4,7 +4,7 @@ import '../App.css';
 
 
 
-const MovieModal = ({ isOpen, closeModal, title, description, genres, src }) => {
+const MovieModal = ({ isOpen, closeModal, title, description, genres, theme }) => {
 
     
     return (
@@ -27,7 +27,7 @@ const MovieModal = ({ isOpen, closeModal, title, description, genres, src }) => 
 
                         <div className='modal-content-bot'>
                             <div className='modal-content-genre'>{genres}</div>
-                            <div  className='modal-content-bot-btn' onClick={closeModal}>Close</div>
+                            <div  className={`modal-content-bot-btn ${theme}`} onClick={closeModal}>Close</div>
                         </div>
 
                     </div>

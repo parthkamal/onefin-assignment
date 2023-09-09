@@ -12,8 +12,18 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [token, setToken] = useState(null);
     const [errors, setErrors] = useState({});
+    const [theme, setTheme] = useState("dark-theme");
+    
 
-
+    const toggleTheme =() =>{
+        setTheme((oldTheme) => {
+            if(oldTheme === "dark-theme"){
+                return "light-theme";
+            }else {
+                return "dark-theme";
+            }
+        });
+    }
 
     const validateForm = () => {
         const errors = {};
@@ -80,8 +90,12 @@ const Login = () => {
 
 
 
+
+
+
     return (
-        <div className='login-main'>
+        <div className={`login-main ${theme}`}>
+        <button onClick={toggleTheme}>toggle</button>
             <div className='login-box'>
                 <div>
                     <h2>Login</h2>

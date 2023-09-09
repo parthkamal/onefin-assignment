@@ -18,6 +18,18 @@ const Movies = () => {
     const [filteredItems, setFilteredItems] = useState(list);
     const [typingTimeout, setTypingTimeout] = useState(null);
     const [isPopulated, setPopulated] = useState(false);
+    const [theme,setTheme] = useState("dark-theme");
+
+
+    const toggleTheme =() =>{
+        setTheme((oldTheme) => {
+            if(oldTheme === "dark-theme"){
+                return "light-theme";
+            }else {
+                return "dark-theme";
+            }
+        });
+    }
 
     const handleSearch = (e) => {
 
@@ -99,7 +111,8 @@ const Movies = () => {
     }, [currentPage]);
 
     return (
-        <div className='movie-list'>
+        <div className={`movie-list ${theme}`}>
+        <button onClick={toggleTheme}>toggle</button>
             <h1 className='movie-heading'>List of Movies</h1>
             <input
                 id="search-input"
@@ -116,7 +129,7 @@ const Movies = () => {
                 <div className='movie-grid'>
                     {
                         filteredItems.map((item, index) => (
-                            <Movie movie={item} key={index} />
+                            <Movie movie={item} key={index} theme={theme}/>
 
                         ))
                     }

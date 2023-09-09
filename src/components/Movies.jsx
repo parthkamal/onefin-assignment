@@ -112,7 +112,7 @@ const Movies = () => {
 
     return (
         <div className={`movie-list ${theme}`}>
-        <button onClick={toggleTheme}>toggle</button>
+        <button className='toggle-btn' onClick={toggleTheme}>toggle</button>
             <h1 className='movie-heading'>List of Movies</h1>
             <input
                 id="search-input"

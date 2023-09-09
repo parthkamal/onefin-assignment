@@ -95,7 +95,7 @@ const Login = () => {
 
     return (
         <div className={`login-main ${theme}`}>
-        <button onClick={toggleTheme}>toggle</button>
+        <button className='toggle-btn' onClick={toggleTheme}>toggle</button>
             <div className='login-box'>
                 <div>
                     <h2>Login</h2>

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Raleway:wght@500&display=swap');
 
 
+
 .dark-theme {
   --main-background: #211a1d;
   --login-background: transparent;
@@ -63,7 +64,8 @@ body {
   justify-content: center;
   align-items: center;
   background-repeat: no-repeat;
-  width: 100%;
+  min-width: 100vw;
+  /* border: 1px solid blue; */
   min-height: 100vh;
 
 }
@@ -205,8 +207,6 @@ h2 {
 
 
 
-
-
 /*--------------------------------------------------PAGINATION--------------------------------------------------*/
 
 
@@ -242,6 +242,8 @@ h2 {
 .movie-list {
   background-color: var(--main-background);
   color: var(--color-secondary);
+  width: 100vw;
+  margin: 0px;
   min-width: 100em;
   min-height: 100vh;
   display: flex;
@@ -639,7 +641,7 @@ h2 {
 }
 
 .refresh-button {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   text-align: center;
   padding: 10px;
   border-radius: 5px;
@@ -681,4 +683,26 @@ h2 {
     position: sticky;
     margin-bottom: 2%;
   }
+}
+
+
+.toggle-btn {
+  position: fixed;
+    top: 10px; /* Adjust this value to control the distance from the top edge */
+    right: 10px; /* Adjust this value to control the distance from the right edge */
+    z-index: 1000; 
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--refresh-btn-background);
+    color: white;
+  transition: background-color 0.3s, color 0.3s;
+
+}
+
+
+.toggle-btn:hover {
+  background-color: var(--refresh-btn-hover-background);
+  color: var(--refresh-btn-background);
 }

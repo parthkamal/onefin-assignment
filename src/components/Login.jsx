@@ -13,13 +13,13 @@ const Login = () => {
     const [token, setToken] = useState(null);
     const [errors, setErrors] = useState({});
     const [theme, setTheme] = useState("dark-theme");
-    
 
-    const toggleTheme =() =>{
+
+    const toggleTheme = () => {
         setTheme((oldTheme) => {
-            if(oldTheme === "dark-theme"){
+            if (oldTheme === "dark-theme") {
                 return "light-theme";
-            }else {
+            } else {
                 return "dark-theme";
             }
         });
@@ -63,10 +63,9 @@ const Login = () => {
 
             } catch (error) {
                 console.error('Login failed:', error);
+                alert('please enter correct username and password');
             }
         }
-
-
     };
 
 
@@ -78,24 +77,16 @@ const Login = () => {
                 [fieldName]: '',
             }));
         }
-
     };
 
     const handleFocus = (e) => {
-
         setErrors((prevErrors) => ({}))
     };
 
 
-
-
-
-
-
-
     return (
         <div className={`login-main ${theme}`}>
-        <button className='toggle-btn' onClick={toggleTheme}>toggle</button>
+            <button className='toggle-btn' onClick={toggleTheme}>toggle</button>
             <div className='login-box'>
                 <div>
                     <h2>Login</h2>
@@ -134,8 +125,6 @@ const Login = () => {
                 </div>
             </div>
         </div>
-
-
 
     );
 }

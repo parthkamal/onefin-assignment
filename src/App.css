@@ -19,7 +19,7 @@
   --color-secondary: white;
   --know-more-color: yellow;
   --modal-content-color: white;
-  --form-message-color: rgb(249, 63, 63); 
+  --form-message-color: rgb(249, 63, 63);
 
 }
 
@@ -65,7 +65,6 @@ body {
   align-items: center;
   background-repeat: no-repeat;
   min-width: 100vw;
-  /* border: 1px solid blue; */
   min-height: 100vh;
 
 }
@@ -632,16 +631,14 @@ h2 {
   padding: 16px;
   width: 40%;
   font-size: 23px;
-  /* border: 1px solid var(--color-secondary); */
   border: none;
   border-radius: 35px;
   position: sticky;
   margin-bottom: 2%;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .refresh-button {
-  /* border: 1px solid green; */
   text-align: center;
   padding: 10px;
   border-radius: 5px;
@@ -649,6 +646,7 @@ h2 {
   background-color: var(--refresh-btn-background);
   color: white;
   margin: 20px;
+  cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 
 }
@@ -688,15 +686,16 @@ h2 {
 
 .toggle-btn {
   position: fixed;
-    top: 10px; /* Adjust this value to control the distance from the top edge */
-    right: 10px; /* Adjust this value to control the distance from the right edge */
-    z-index: 1000; 
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: var(--refresh-btn-background);
-    color: white;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--refresh-btn-background);
+  color: white;
+  cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 
 }

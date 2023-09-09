@@ -18,14 +18,14 @@ const Movies = () => {
     const [filteredItems, setFilteredItems] = useState(list);
     const [typingTimeout, setTypingTimeout] = useState(null);
     const [isPopulated, setPopulated] = useState(false);
-    const [theme,setTheme] = useState("dark-theme");
+    const [theme, setTheme] = useState("dark-theme");
 
 
-    const toggleTheme =() =>{
+    const toggleTheme = () => {
         setTheme((oldTheme) => {
-            if(oldTheme === "dark-theme"){
+            if (oldTheme === "dark-theme") {
                 return "light-theme";
-            }else {
+            } else {
                 return "dark-theme";
             }
         });
@@ -103,7 +103,7 @@ const Movies = () => {
 
     const handlePageChange = (event, page) => {
         setPopulated(false);
-        setCurrentPage((prev) => page); 
+        setCurrentPage((prev) => page);
     }
 
     useEffect(() => {
@@ -112,7 +112,7 @@ const Movies = () => {
 
     return (
         <div className={`movie-list ${theme}`}>
-        <button className='toggle-btn' onClick={toggleTheme}>toggle</button>
+            <button className='toggle-btn' onClick={toggleTheme}>toggle</button>
             <h1 className='movie-heading'>List of Movies</h1>
             <input
                 id="search-input"
@@ -129,7 +129,7 @@ const Movies = () => {
                 <div className='movie-grid'>
                     {
                         filteredItems.map((item, index) => (
-                            <Movie movie={item} key={index} theme={theme}/>
+                            <Movie movie={item} key={index} theme={theme} />
 
                         ))
                     }
